@@ -1,161 +1,311 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="PIVOT: Iterative Visual Prompting for VLMs with Applications to Zero-Shot Robotic Control">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PIVOT: Iterative Visual Prompting for VLMs with Applications to Zero-Shot Robotic Control</title>
 
-  <!-- TODO: Global site tag (gtag.js) - Google Analytics -->
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    <title>PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs</title>
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+    <meta name="description" content="PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+    <!-- <base href="/"> -->
+
+    <meta property="og:image" content="https://pivot-prompt.github.io/img/teaser.gif">
+    <meta property="og:image:type" content="image/gif">
+    <meta property="og:image:width" content="600">
+    <meta property="og:image:height" content="338">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pivot-prompt.github.io/"/>
+    <meta property="og:title" content="Iterative Visual Prompting Elicits Actionable Knowledge for VLMs" />
+    <meta property="og:description" content="Project page for PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs." />
+
+    <!--TWITTER-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs" />
+    <meta name="twitter:description" content="Project page for PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs." />
+    <meta name="twitter:image" content="https://pivot-prompt.github.io/img/teaser.png" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css"> -->
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+    <script src="js/app.js"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-52J0PM8XKV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-52J0PM8XKV');
+    </script>
+
+    <style>
+          .nav-pills {
+            position: relative;
+            display: inline;
+        }
+
+        .imtip {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .carousel-item {
+  transition: opacity 0.25s ease-in-out;
+}
+
+    </style>
 </head>
+
 <body>
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">PIVOT: Iterative Visual Prompting for VLMs with Applications to Zero-Shot Robotic Control</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              Albert Einstein<sup>1</sup>,</span>
-            <span class="author-block">
-              Marie Curie<sup>1</sup>,</span>
-            <span class="author-block">
-              Richard Feynman<sup>1</sup>,</span>
-            </span>
-            <span class="author-block">
-              Ada Lovelace<sup>1</sup></span>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Institution</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-          </div>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <strong>
+                    <font size="+4">PIVOT: Iterative Visual Prompting Elicits Actionable Knowledge for VLMs</font>
+                </strong>
+                <!--<small>
+                    CoRL 2021
+                </small>-->
+            </h2>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>Vision language models (VLMs) have shown impressive capabilities across a variety of tasks, from logical reasoning to visual understanding. This opens the door to richer interaction with the world, for example in the domain of robotic control. However, VLMs produce only textual outputs, while robotic control and other spatial tasks require outputting continuous coordinates, actions, or trajectories. How can we enable VLMs to handle such settings without fine-tuning on task-specific data?</p>
-          <p>In this paper, we propose a novel visual prompting approach for VLMs that we call Iterative Visual Optimization (PIVOT). PIVOT casts tasks as iterative visual question answering. In each iteration, the image is annotated with a visual representation of proposals that the VLM can refer to (e.g., candidate robot actions, localizations, or trajectories). The VLM then selects the ones that best perform the task. These  proposals are iteratively refined, allowing the VLM to eventually zero in on the best available proposal. We empirically investigate PIVOT on real-world robotic navigation, real-world manipulation from images, complex instruction following in simulation, and additional spatial inference tasks such as localization. We find, perhaps surprisingly, that our approach enables zero-shot control of robotic systems without any robot training data, navigation in a variety of environments, and other capabilities. Although current performances are far from perfect, our work investigates VLMs' limits and potentials and shows a promising approach for Internet-Scale VLMs to solve problems in robotic and spatial reasoning domains.</p>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <ul class="list-inline">
+                    <br>
+                    <li>Anonymous Authors</li>
+                </ul>
+            </div>
         </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-  </div>
-</section>
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Method. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Method</h2>
-        <div class="content has-text-justified">
-          <p>
-            TODO: Write this.
-          </p>
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+                <h3>
+                    PIVOT in Action
+                </h3>
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/navigation.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/manipulation.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <!--/ Method. -->
-    <!-- Experiments. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Experiments</h2>
-        <div class="content has-text-justified">
-          <p>
-            TODO: Write this.
-          </p>
+
+<!-- 
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe width="600" height="300" src="https://www.youtube.com/embed/7KiKg0rdSSQ"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p style="text-align:center;">
+                    <!-- <video id="v0" width="100%" playsinline autoplay muted loop controls>
+                       <source src="img/rt1_mosaic_comp.mp4" type="video/mp4">
+                   </video> -->
+                </p>
+                <h3>Abstract</h3>
+                <p class="text-justify">
+                    Vision language models (VLMs) have shown impressive capabilities across a variety of tasks, from logical reasoning to visual understanding. This opens the door to richer interaction with the world, for example robotic control. However, VLMs produce only textual outputs, while robotic control and other spatial tasks require outputting continuous coordinates, actions, or trajectories. How can we enable VLMs to handle such settings without fine-tuning on task-specific data?
+                </p>
+                <p class="text-justify">
+                    In this paper, we propose a novel visual prompting approach for VLMs that we call Prompting with Iterative Visual Optimization (PIVOT), which casts tasks as iterative visual question answering. In each iteration, the image is annotated with a visual representation of proposals that the VLM can refer to (e.g., candidate robot actions, localizations, or trajectories). The VLM then selects the best ones for the task. These proposals are iteratively refined, allowing the VLM to eventually zero in on the best available answer. We investigate PIVOT on real-world robotic navigation, real-world manipulation from images, instruction following in simulation, and additional spatial inference tasks such as localization.
+                </p>
+                <p class="text-justify">
+                    We find, perhaps surprisingly, that our approach enables zero-shot control of robotic systems without any robot training data, navigation in a variety of environments, and other capabilities. Although current performance is far from perfect, our work highlights potentials and limitations of this new regime and shows a promising approach for Internet-Scale VLMs in robotic and spatial reasoning domains.
+                </p>
+            </div>
         </div>
-      </div>
-    </div>
-    <!--/ Experiments. -->
-  </div>
-</section>
 
 
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{2024pivot,
-  author    = {TODO},
-  title     = {PIVOT: Iterative Visual Prompting for VLMs with Applications to Zero-Shot Robotic Control},
-  journal   = {ICML},
-  year      = {2024},
-}</code></pre>
-  </div>
-</section>
+        <div class="row" id="demo">
+            <div class="col-md-8 col-md-offset-2">
+                <p style="text-align:center;">
+                    <!-- <video id="v0" width="100%" playsinline autoplay muted loop controls>
+                       <source src="img/rt1_mosaic_comp.mp4" type="video/mp4">
+                   </video> -->
+                </p>
+                <h3>Demo</h3>
+                <script
+	type="module"
+	src="https://gradio.s3-us-west-2.amazonaws.com/4.18.0/gradio.js"
+></script>
 
+<gradio-app src="https://pivot-prompt-pivot-prompt-demo.hf.space"></gradio-app>
 
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="#">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>This website is borrowed from <a href="https://nerfies.github.io/">nerfies</a>.</p>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</footer>
 
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+                <h3>
+                    Approach Overview
+                </h3>
+                <p style="text-align:center;">
+                    <image src="img/pivot_overview.png" class="img-responsive">
+                </p>
+                <p class="text-justify">
+                    Prompting with Iterative Visual Optimization (PIVOT) casts spatial reasoning tasks, such as robotic
+control, as a VQA problem. This is done by first annotating an image with a visual representation of robot
+actions or 3D coordinates, then querying a VLM to select the most promising annotated actions seen in the
+image. The best action is iteratively refined by fitting a distribution to the selected actions and requerying the
+VLM. This procedure enables us to solve complex tasks that require outputting grounded continuous coordinates
+or robot actions utilizing a VLM without any domain-specific training.
+                </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- <img src="img/pivot_method6.png" class="img-responsive fade-in">
+                <p class="text-justify">
+                    Prompting with Iterative Visual Optimization produces a robot control policy by iteratively 
+                    <ol>
+                      <li>sampling actions from an action distribution <em>A(i)</em>,</li>
+                      <li>projecting them into the image space and annotating each sample,</li>
+                      <li>querying a VLM for the best actions,</li>
+                      <li>fitting a distribution to the selected actions to form <em>A(i+1)</em>.</li>
+                      <li>After a set number of iterations, a selected best action is executed.</li>
+                    </ol>
+                </p> -->
+                <div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="img/pivot_method1.png" class="d-block w-100" alt="Slide 1">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="img/pivot_method2.png" class="d-block w-100" alt="Slide 2">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="img/pivot_method3.png" class="d-block w-100" alt="Slide 3">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="img/pivot_method4.png" class="d-block w-100" alt="Slide 4">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="img/pivot_method5.png" class="d-block w-100" alt="Slide 5">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="img/pivot_method6.png" class="d-block w-100" alt="Slide 6">
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <br>
+                <h3>
+                    Examples
+                </h3>
+                Examples for inference on ego-centric view videos. The videos are not real-time, and VLM inference calls have been edited out for demonstration purposes.
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/demo_smiley.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/demo_bike.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/demo_rpg.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/demo_coke.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/demo_hungry.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="carousel-slide">
+                        <video poster="" id="" autoplay controls muted loop inline height="100%" playbackRate=2.0>
+                            <source src="vids/demo_thirsty.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+<script>
+   
+   document.addEventListener('DOMContentLoaded', function () {
+  var myCarousel = document.querySelector('#carouselExample');
+  var carousel = new bootstrap.Carousel(myCarousel, {
+    interval: false,
+    wrap: false // Ensure wrap is set to false to prevent automatic wrapping
+  });
+
+  let debounceTimer;
+  myCarousel.addEventListener('wheel', function (e) {
+    e.preventDefault(); // Prevent the page from scrolling
+
+    if (debounceTimer) clearTimeout(debounceTimer); // Clear the previous timer
+
+    debounceTimer = setTimeout(function() {
+      const totalItems = myCarousel.querySelectorAll('.carousel-item').length;
+      const currentIndex = myCarousel.querySelector('.carousel-item.active').getAttribute('data-bs-slide-to');
+
+      if (e.deltaY < 0 && currentIndex > 0) {
+        // Scroll up, go to the previous item if not the first item
+        carousel.prev();
+      } else if (e.deltaY > 0 && currentIndex < totalItems - 1) {
+        // Scroll down, go to the next item if not the last item
+        carousel.next();
+      }
+      // Do nothing if the current slide is the first or the last
+    }, 10); // Adjust this delay to control sensitivity
+  });
+});
+
+   
+</script>
 </html>
